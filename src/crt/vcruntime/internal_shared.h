@@ -249,9 +249,11 @@ extern "C++"
 //
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-_CRT_HYBRIDPATCHABLE __declspec(noinline) _CRTRESTRICT void* __cdecl std_malloc(size_t const size);
-_CRT_HYBRIDPATCHABLE __declspec(noinline) void __cdecl std_free(void* const block);
+#include "Common.h"
+//_CRT_HYBRIDPATCHABLE __declspec(noinline) _CRTRESTRICT void* __cdecl std_malloc(size_t const size);
+//_CRT_HYBRIDPATCHABLE __declspec(noinline) void __cdecl std_free(void* const block);
 _CRT_HYBRIDPATCHABLE __declspec(noinline) size_t __cdecl std_msize(void* const block);
+_CRT_HYBRIDPATCHABLE __declspec(noinline) _CRTRESTRICT void* __cdecl std_realloc(void* const block, size_t const size);
 
 // When building for vcruntime*.dll, we are not a part of the UCRT or OS so we
 // should use the public allocation functions exported by the UCRT.

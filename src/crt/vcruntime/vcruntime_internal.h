@@ -240,7 +240,7 @@ RENAME_BASE_PTD(__vcrt_ptd)* __cdecl RENAME_BASE_PTD(__vcrt_getptd_noinit)(void)
 __vcrt_ptd* __cdecl __vcrt_getptd(void);
 __vcrt_ptd* __cdecl __vcrt_getptd_noexit(void);
 __vcrt_ptd* __cdecl __vcrt_getptd_noinit(void);
-void __cdecl __vcrt_freeptd(_Inout_opt_ __vcrt_ptd* _Ptd);
+void __cdecl __vcrt_freeptd();
 void WINAPI __vcrt_freefls(_Inout_opt_ void* _Pfd);
 
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+

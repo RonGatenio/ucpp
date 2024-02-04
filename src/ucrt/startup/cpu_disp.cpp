@@ -19,6 +19,7 @@
 #include <intrin.h>
 #include <immintrin.h>
 #include <isa_availability.h>
+#include <Utils.h>
 
 
 // BitScanForward
@@ -136,11 +137,6 @@ unsigned int __isa_available = __ISA_AVAILABLE_X86;
 unsigned int __isa_enabled   = __ISA_ENABLED_X86;
 unsigned int __favor         = 0;
 
-BOOLEAN __stdcall __IsProcessorFeaturePresent(_In_ ULONG ProcessorFeature)
-{
-    return (BOOLEAN)ExIsProcessorFeaturePresent(ProcessorFeature);
-}
-
 #if defined(_AMD64_)
 #pragma intrinsic(__cpuid)
 #pragma intrinsic(__cpuidex)
@@ -165,7 +161,7 @@ void __cdecl __isa_available_init()
     uint32_t intel_outside;
 
     __favor = 0;
-    if (!__IsProcessorFeaturePresent(PF_XMMI64_INSTRUCTIONS_AVAILABLE))
+    if (!UTILS_IsXmmSupport())
         goto ISA_AVAILABLE_X86;
     __cpuid((int *)&cpuInfo, 0);
     cpuid_0_eax = cpuInfo.eax;
@@ -254,8 +250,7 @@ __declspec(naked) void __cdecl __isa_available_init()
         #define cpuid_7_ebx ebx
 
         mov     dword ptr [__favor], 0
-        push    PF_XMMI64_INSTRUCTIONS_AVAILABLE
-        call    __IsProcessorFeaturePresent
+        call    UTILS_IsXmmSupport
         test    eax, eax
         jz      ISA_AVAILABLE_X86
         push    ebx

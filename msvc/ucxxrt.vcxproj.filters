@@ -53,6 +53,12 @@
     <Filter Include="ucxxrt\ucrt\internal">
       <UniqueIdentifier>{b1ae36f0-e82c-4518-bc71-a86e38c8a9d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ucxxrt\Hal">
+      <UniqueIdentifier>{9073ab1d-3414-45f2-95f4-b5f958975f69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ucxxrt\Hal\Inc">
+      <UniqueIdentifier>{8582090a-4b33-4d40-a0c2-cc9546f918c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\ucxxrt.h">
@@ -127,6 +133,21 @@
     <ClInclude Include="..\src\crt\stl\init_locks.hpp">
       <Filter>ucxxrt\crt\stl</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Hal\Inc\Allocator.h">
+      <Filter>ucxxrt\Hal\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hal\Inc\Common.h">
+      <Filter>ucxxrt\Hal\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hal\Inc\Mutex.h">
+      <Filter>ucxxrt\Hal\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hal\Inc\PerContextData.h">
+      <Filter>ucxxrt\Hal\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hal\Inc\Utils.h">
+      <Filter>ucxxrt\Hal\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\ucxxrt.inl">
@@ -165,9 +186,6 @@
       <Filter>ucxxrt\ucrt\misc</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ucrt\misc\errno.cpp">
-      <Filter>ucxxrt\ucrt\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ucrt\misc\message.cpp">
       <Filter>ucxxrt\ucrt\misc</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ucrt\misc\terminate.cpp">
@@ -674,20 +692,11 @@
     <ClCompile Include="..\src\crt\vcruntime\user.cpp">
       <Filter>ucxxrt\crt\vcruntime</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ucrt\heap\kmalloc.cpp">
-      <Filter>ucxxrt\ucrt\heap</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ucrt\heap\kfree.cpp">
-      <Filter>ucxxrt\ucrt\heap</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\crt\vcruntime\delete_km.cpp">
       <Filter>ucxxrt\crt\vcruntime</Filter>
     </ClCompile>
     <ClCompile Include="..\src\crt\vcruntime\new_km.cpp">
       <Filter>ucxxrt\crt\vcruntime</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ucrt\heap\stdalloc.cpp">
-      <Filter>ucxxrt\ucrt\heap</Filter>
     </ClCompile>
     <ClCompile Include="..\src\crt\stl\mutex.cpp">
       <Filter>ucxxrt\crt\stl</Filter>
@@ -712,6 +721,9 @@
     </ClCompile>
     <ClCompile Include="..\src\ucrt\startup\thread.cpp">
       <Filter>ucxxrt\ucrt\startup</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crt\vcruntime\stdalloc.cpp">
+      <Filter>ucxxrt\crt\vcruntime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

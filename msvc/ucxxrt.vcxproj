@@ -57,6 +57,11 @@
     <ClInclude Include="..\src\crt\vcruntime\vcruntime_internal.h" />
     <ClInclude Include="..\src\crt\vcruntime\vcstartup_internal.h" />
     <ClInclude Include="..\src\crt\vcruntime\winapi_thunks.h" />
+    <ClInclude Include="..\src\Hal\Inc\Allocator.h" />
+    <ClInclude Include="..\src\Hal\Inc\Common.h" />
+    <ClInclude Include="..\src\Hal\Inc\Mutex.h" />
+    <ClInclude Include="..\src\Hal\Inc\PerContextData.h" />
+    <ClInclude Include="..\src\Hal\Inc\Utils.h" />
     <ClInclude Include="..\src\ucrt\inc\corecrt_internal.h" />
     <ClInclude Include="..\src\ucxxrt.h" />
   </ItemGroup>
@@ -319,6 +324,7 @@
     <ClCompile Include="..\src\crt\vcruntime\riscchandler.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\risctrnsctrl.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\rtti.cpp" />
+    <ClCompile Include="..\src\crt\vcruntime\stdalloc.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\std_exception.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\std_type_info.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\std_type_info_static.cpp" />
@@ -353,15 +359,12 @@
     <ClCompile Include="..\src\ucrt\heap\calloc.cpp" />
     <ClCompile Include="..\src\ucrt\heap\expand.cpp" />
     <ClCompile Include="..\src\ucrt\heap\free.cpp" />
-    <ClCompile Include="..\src\ucrt\heap\kfree.cpp" />
     <ClCompile Include="..\src\ucrt\heap\malloc.cpp" />
-    <ClCompile Include="..\src\ucrt\heap\kmalloc.cpp" />
     <ClCompile Include="..\src\ucrt\heap\msize.cpp" />
     <ClCompile Include="..\src\ucrt\heap\new_handler.cpp" />
     <ClCompile Include="..\src\ucrt\heap\new_mode.cpp" />
     <ClCompile Include="..\src\ucrt\heap\realloc.cpp" />
     <ClCompile Include="..\src\ucrt\heap\recalloc.cpp" />
-    <ClCompile Include="..\src\ucrt\heap\stdalloc.cpp" />
     <ClCompile Include="..\src\ucrt\internal\initialization.cpp" />
     <ClCompile Include="..\src\ucrt\internal\locks.cpp" />
     <ClCompile Include="..\src\ucrt\internal\per_thread_data.cpp" />
@@ -370,7 +373,6 @@
     <ClCompile Include="..\src\ucrt\misc\errno.cpp" />
     <ClCompile Include="..\src\ucrt\misc\exception_filter.cpp" />
     <ClCompile Include="..\src\ucrt\misc\invalid_parameter.cpp" />
-    <ClCompile Include="..\src\ucrt\misc\message.cpp" />
     <ClCompile Include="..\src\ucrt\misc\terminate.cpp" />
     <ClCompile Include="..\src\ucrt\startup\abort.cpp" />
     <ClCompile Include="..\src\ucrt\startup\cpu_disp.cpp" />
@@ -809,6 +811,16 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\Hal\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\Hal\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

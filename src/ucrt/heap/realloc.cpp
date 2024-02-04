@@ -58,36 +58,5 @@ extern "C" _CRT_HYBRIDPATCHABLE __declspec(noinline) _CRTRESTRICT void* __cdecl 
     size_t const size
     )
 {
-    // If the block is a nullptr, just call malloc:
-    if (block == nullptr)
-        return malloc(size);
-
-    // If the new size is 0, just call free and return nullptr:
-    if (size == 0)
-    {
-        free(block);
-        return nullptr;
-    }
-
-    // Ensure that the requested size is not too large:
-    _VALIDATE_RETURN_NOEXC(_HEAP_MAXREQ >= size, ENOMEM, nullptr);
-
-    for (;;)
-    {
-        void* const new_block = _realloc_size(_msize(block), size, block);
-        if (new_block)
-        {
-            return new_block;
-        }
-
-        // Otherwise, see if we need to call the new handler, and if so call it.
-        // If the new handler fails, just return nullptr:
-        if (_query_new_mode() == 0 || !_callnewh(size))
-        {
-            errno = ENOMEM;
-            return nullptr;
-        }
-
-        // The new handler was successful; try to allocate again...
-    }
+    return std_realloc(block, size);
 }

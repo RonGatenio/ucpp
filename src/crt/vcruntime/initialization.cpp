@@ -52,7 +52,7 @@ bool __cdecl __vcrt_thread_attach()
 bool __cdecl __vcrt_thread_detach()
 {
     // Free the per-thread data structure for this thread:
-    __vcrt_freeptd(nullptr);
+    __vcrt_freeptd();
     return true;
 }
 

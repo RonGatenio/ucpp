@@ -46,14 +46,6 @@
 #include <stdint.h>
 
 
-namespace ucxxrt
-{
-#ifdef _KERNEL_MODE
-    extern PVOID PsSystemDllBase;
-#endif
-}
-
-
 #ifndef _ByteSwap16
 #define _ByteSwap16(x) (                            \
     ((uint16_t(x) & uint16_t(0xFF << 8)) >> 8) |    \

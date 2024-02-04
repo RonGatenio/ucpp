@@ -141,33 +141,30 @@ extern "C" bool __cdecl __scrt_is_nonwritable_in_current_image(void const* const
 //
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-extern "C" void __cdecl __scrt_initialize_system();
-
-extern "C" void __cdecl __scrt_initialize_memory()
-{
-    // Nx
-    ExInitializeDriverRuntime(DrvRtPoolNxOptIn);
-}
+extern "C" bool __cdecl std_heap_init();
+extern "C" void __cdecl std_heap_uninit();
 
 extern "C" bool __cdecl __scrt_initialize_crt()
 {
 #if defined(_M_IX86) || defined(_M_X64)
     __isa_available_init();
 #endif
-
-    __scrt_initialize_memory();
-
-    __scrt_initialize_system();
+    if (!std_heap_init())
+    {
+        return false;
+    }
 
     // Notify the CRT components of the process attach, bottom-to-top:
     if (!__vcrt_initialize())
     {
+        std_heap_uninit();
         return false;
     }
 
     if (!__acrt_initialize())
     {
         __vcrt_uninitialize(false);
+        std_heap_uninit();
         return false;
     }
 
@@ -179,6 +176,7 @@ extern "C" bool __cdecl __scrt_uninitialize_crt(bool const is_terminating, bool 
     // Notify the CRT components of the process detach, top-to-bottom:
     __acrt_uninitialize(is_terminating);
     __vcrt_uninitialize(is_terminating);
+    std_heap_uninit();
 
     return true;
 }

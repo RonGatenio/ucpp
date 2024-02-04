@@ -33,17 +33,5 @@ extern "C" __declspec(noinline) _CRTRESTRICT void* __cdecl _recalloc(
     // Ensure that (count * size) does not overflow
     _VALIDATE_RETURN_NOEXC(count == 0 || (_HEAP_MAXREQ / count) >= size, ENOMEM, nullptr);
 
-    size_t const old_block_size = block != nullptr ? _msize(block) : 0;
-    size_t const new_block_size = count * size;
-
-    void* const new_block = realloc(block, new_block_size);
-
-    // If the reallocation succeeded and the new block is larger, zero-fill the
-    // new bytes:
-    if (new_block != nullptr && old_block_size < new_block_size)
-    {
-        memset(static_cast<char*>(new_block) + old_block_size, 0, new_block_size - old_block_size);
-    }
-
-    return new_block;
+    return std_realloc(block, count * size);
 }
