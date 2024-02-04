@@ -9,6 +9,7 @@
 ****/
 
 #pragma once
+#include <Utils.h>
 
 #define EHTRACE_RESET
 #define EHTRACE_SAVE_LEVEL
@@ -23,5 +24,11 @@
 #define EHTRACE_EXCEPT(x)       (x)
 #define EHTRACE_EXIT
 #define EHTRACE_HANDLER_EXIT(x)
+#undef ASSERT
+#define ASSERT( exp ) \
+    ((!(exp)) ? \
+        (UTILS_Assert( (PVOID)#exp, (PVOID)__FILE__, __LINE__, NULL ),FALSE) : \
+        TRUE)
+
 
 #define _VCRT_VERIFY ASSERT

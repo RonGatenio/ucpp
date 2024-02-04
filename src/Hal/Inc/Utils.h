@@ -12,8 +12,19 @@ UTILS_IsXmmSupport(
 
 void
 _cdecl
-UTILS_Abort(
-	VOID
+UTILS_Assert(
+	void* assertion,
+	void* filename,
+	uint32_t linenumber,
+	char* message
+);
+
+uint32_t
+UTILS_DbgPrint(
+	uint32_t ComponentId,
+	uint32_t Level,
+	char const* Format,
+	...
 );
 
 #ifdef __cplusplus

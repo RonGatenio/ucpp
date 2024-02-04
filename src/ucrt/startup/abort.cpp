@@ -10,6 +10,7 @@
 
 #include <corecrt_internal.h>
 #include <stdlib.h>
+#include <Utils.h>
 
 #ifdef _DEBUG
 #define _INIT_ABORT_BEHAVIOR _WRITE_ABORT_MSG
@@ -47,7 +48,7 @@ extern "C" void __cdecl _UCXXRT__abort()
 #ifdef _DEBUG
     if (__abort_behavior & _WRITE_ABORT_MSG)
     {
-        DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL,
+        UTILS_DbgPrint(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL,
             "Microsoft Visual C++ Runtime Library\n"
             "\n"
             "Runtime Error!\n"

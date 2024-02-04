@@ -9,11 +9,12 @@
 #include <type_traits>
 #include <xthreads.h>
 #include <xtimec.h>
+#include "Hal/Inc/Utils.h"
 
 #include "primitives.hpp"
 
 extern "C" _CRTIMP2_PURE void __cdecl _Thrd_abort(const char* msg) { // abort on precondition failure
-    DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL, "%s\n", msg);
+    UTILS_DbgPrint(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL, "%s\n", msg);
     abort();
 }
 

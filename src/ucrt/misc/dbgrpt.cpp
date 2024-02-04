@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <crtdbg.h>
+#include <Utils.h>
 
 #include <ntstrsafe.h>
 
@@ -107,7 +108,7 @@ int __cdecl _CrtDbgReport(
 
         _vsnprintf(buffer, count, format, args);
 
-        DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL,
+        UTILS_DbgPrint(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL,
             "================= Microsft Visual C++ Debug Library ================\n"
             "\n"
             "%s"
@@ -157,7 +158,7 @@ int __cdecl _CrtDbgReportW(
 
         _vsnwprintf(buffer, count, format, args);
 
-        DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL,
+        UTILS_DbgPrint(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL,
             "================= Microsft Visual C++ Debug Library ================\n"
             "\n"
             "%ls"
