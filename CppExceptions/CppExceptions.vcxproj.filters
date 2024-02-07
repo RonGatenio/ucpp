@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="xcptmisc.asm">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="macamd64.inc">
       <Filter>Source Files</Filter>
     </None>
@@ -34,5 +31,10 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="xcptmisc.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
 </Project>

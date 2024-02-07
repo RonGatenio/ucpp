@@ -58,22 +58,22 @@ extern "C" {
 
 }
 
-
-extern "C"
-{
-	void* readsspq();
-	void* readsspd();
-}
-
-void* readssp()
-{
-#ifdef _WIN64
-	return readsspq();
-#else
-	return readsspd();
-#endif // _WIN64
-
-}
+//
+//extern "C"
+//{
+//	void* readsspq();
+//	void* readsspd();
+//}
+//
+//void* readssp()
+//{
+//#ifdef _WIN64
+//	return readsspq();
+//#else
+//	return readsspd();
+//#endif // _WIN64
+//
+//}
 
 void* ll()
 {
