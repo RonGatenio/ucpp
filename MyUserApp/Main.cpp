@@ -1,7 +1,7 @@
 #include <ucxxrt.h>
 
-unsigned int ModuleMain(unsigned int state)
+extern "C" unsigned long ModuleMain(unsigned long state, void*)
 {
-
+	return 0;
 }
 

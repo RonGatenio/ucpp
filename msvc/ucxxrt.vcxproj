@@ -64,6 +64,7 @@
     <ClInclude Include="..\src\Hal\Inc\Utils.h" />
     <ClInclude Include="..\src\ucrt\inc\corecrt_internal.h" />
     <ClInclude Include="..\src\ucxxrt.h" />
+    <ClInclude Include="sys_main.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\crt\i386\except.inc">

@@ -1,11 +1,12 @@
 #include <ucxxrt.h>
+#include <ntifs.h>
 #include <kext/kallocator.h>
 
 #define LOG(Format, ...) DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL, "[ucxxrt] [" __FUNCTION__ ":%u]: " Format "\n", __LINE__, ## __VA_ARGS__)
 
 namespace Main
 {
-    EXTERN_C NTSTATUS ModuleMain(unsigned long state, void* context)
+    extern "C" NTSTATUS ModuleMain(unsigned long state, void* context)
     {
         UNREFERENCED_PARAMETER(context);
 
