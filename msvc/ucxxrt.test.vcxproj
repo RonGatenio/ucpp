@@ -70,7 +70,7 @@
     <ConfigurationType>Driver</ConfigurationType>
     <DriverType>WDM</DriverType>
     <DriverTargetPlatform>Universal</DriverTargetPlatform>
-    <Driver_SpectreMitigation>Spectre</Driver_SpectreMitigation>
+    <Driver_SpectreMitigation>false</Driver_SpectreMitigation>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <TargetVersion>Windows10</TargetVersion>
@@ -79,7 +79,7 @@
     <ConfigurationType>Driver</ConfigurationType>
     <DriverType>WDM</DriverType>
     <DriverTargetPlatform>Universal</DriverTargetPlatform>
-    <Driver_SpectreMitigation>Spectre</Driver_SpectreMitigation>
+    <Driver_SpectreMitigation>false</Driver_SpectreMitigation>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <TargetVersion>Windows10</TargetVersion>
@@ -262,6 +262,9 @@
     <ClCompile Include="..\test\unittest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HalKernel\HalKernel.vcxproj">
+      <Project>{a2a36192-0c2a-4c6b-b44f-16ee2d256df2}</Project>
+    </ProjectReference>
     <ProjectReference Include="ucxxrt.vcxproj">
       <Project>{8d969184-788f-48aa-bf18-2898fc167c91}</Project>
     </ProjectReference>

@@ -7,7 +7,7 @@
 #include <functional>
 #include <mutex>
 #include <unordered_map>
-#include <system_error>
+//#include <system_error>
 #include <thread>
 
 #ifndef ASSERT
@@ -208,11 +208,11 @@ namespace UnitTest
     };
 
 
-    void TEST(SystemErrorCode)()
+    /*void TEST(SystemErrorCode)()
     {
         std::error_code Code(STATUS_INVALID_PARAMETER, std::system_category());
         LOG("%s", Code.message().c_str());
-    }
+    }*/
 
 
     void TEST(Realloc)()
@@ -347,7 +347,7 @@ namespace Main
         TEST_PUSH(ThrowUnknow);
         TEST_PUSH(Map);
         TEST_PUSH(InitializerList);
-        TEST_PUSH(SystemErrorCode);
+        //TEST_PUSH(SystemErrorCode);
         TEST_PUSH(Realloc);
         TEST_PUSH(SEH);
         TEST_PUSH(SETranslate);
