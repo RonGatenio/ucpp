@@ -1,5 +1,6 @@
 #include <ucxxrt.h>
 #include <kext/kallocator.h>
+#include <ntifs.h>
 
 #include <string>
 #include <random>
@@ -334,10 +335,15 @@ namespace UnitTest
 
 namespace Main
 {
-    EXTERN_C NTSTATUS ModuleMain(const PDRIVER_OBJECT DriverObject, const PUNICODE_STRING Registry)
+    extern "C" NTSTATUS ModuleMain(unsigned long state, void*)
     {
         using namespace UnitTest;
-        UNREFERENCED_PARAMETER(Registry);
+
+        if (0 == state)
+        {
+            LOG("exit.");
+            return 0;
+        }
 
         LOG("entry.");
 
@@ -356,11 +362,6 @@ namespace Main
         for (const auto& Test : TestVec) {
             Test();
         }
-
-        DriverObject->DriverUnload = [](auto)
-        {
-            LOG("exit.");
-        };
 
         return 0l;
     }
