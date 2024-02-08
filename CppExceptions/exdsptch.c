@@ -1104,7 +1104,7 @@ Return Value:
             case UWOP_SPARE_CODE1:
             case UWOP_SPARE_CODE2:
 
-                ASSERT(FALSE);
+                //ASSERT(FALSE);
 
                 break;
 

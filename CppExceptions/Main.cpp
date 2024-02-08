@@ -115,7 +115,10 @@ int main(int argc, char** args)
 		{
 			printf("exception 2..\n");
 			// TODO: fix throw;
+			 throw std::exception();
 		}
+
+		// throw std::exception();
 	}
 	catch (const std::exception&)
 	{
