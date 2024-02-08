@@ -38,6 +38,7 @@
     <ClCompile Include="Allocator.c" />
     <ClCompile Include="Mutex.c" />
     <ClCompile Include="PerContextData.c" />
+    <ClCompile Include="SysMain.c" />
     <ClCompile Include="Utils.c" />
   </ItemGroup>
   <ItemGroup>

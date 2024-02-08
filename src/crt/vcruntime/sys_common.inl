@@ -36,13 +36,13 @@
 
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 //
-// Common DriverMain() implementation
+// Common ModuleMain() implementation
 //
 //-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-static int __cdecl invoke_main(PDRIVER_OBJECT drvobj, PUNICODE_STRING regpath)
+static unsigned long __cdecl invoke_main(void* hal_context)
 {
-    return DriverMain(drvobj, regpath);
+    return ModuleMain(1, hal_context);
 }
 
 static int __cdecl pre_c_initialization()
@@ -67,20 +67,16 @@ _CRTALLOC(".CRT$XIAA") static _PIFV pre_c_initializer    = pre_c_initialization;
 _CRTALLOC(".CRT$XCAA") static _PVFV pre_cpp_initializer  = pre_cpp_initialization;
 
 
-static PDRIVER_UNLOAD __drv_unload = nullptr;
-static __declspec(noinline) void __scrt_common_exit(PDRIVER_OBJECT drvobj)
+static __declspec(noinline) void __scrt_common_exit(void* context)
 {
-    if (__drv_unload && __drv_unload != &__scrt_common_exit)
-    {
-        __drv_unload(drvobj);
-    }
+    ModuleMain(0, context);
 
     _cexit();
 
     __scrt_uninitialize_crt(true, true);
 }
 
-static __declspec(noinline) long __cdecl __scrt_common_main_seh(PDRIVER_OBJECT drvobj, PUNICODE_STRING regpath)
+static __declspec(noinline) long __cdecl __scrt_common_main_seh(void* context)
 {
 
     if (!__scrt_initialize_crt())
@@ -97,16 +93,8 @@ static __declspec(noinline) long __cdecl __scrt_common_main_seh(PDRIVER_OBJECT d
         // Initialization is complete; invoke main...
         //
 
-        long const main_result = invoke_main(drvobj, regpath);
-        if (NT_SUCCESS(main_result))
-        {
-            if (drvobj->DriverUnload)
-            {
-                __drv_unload = drvobj->DriverUnload;
-                drvobj->DriverUnload = &__scrt_common_exit;
-            }
-        }
-        else
+        long const main_result = invoke_main(context);
+        if (!NT_SUCCESS(main_result))
         {
             _cexit();
 
@@ -131,12 +119,12 @@ static __declspec(noinline) long __cdecl __scrt_common_main_seh(PDRIVER_OBJECT d
 
 // This is the common main implementation to which all of the CRT main functions
 // delegate (for executables; DLLs are handled separately).
-static __forceinline int __cdecl __scrt_common_main(PDRIVER_OBJECT drvobj, PUNICODE_STRING regpath)
+static __forceinline int __cdecl __scrt_common_main(void* context)
 {
     // The /GS security cookie must be initialized before any exception handling
     // targeting the current image is registered.  No function using exception
     // handling can be called in the current image until after this call:
     //__security_init_cookie();
 
-    return __scrt_common_main_seh(drvobj, regpath);
+    return __scrt_common_main_seh(context);
 }

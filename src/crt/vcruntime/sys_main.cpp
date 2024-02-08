@@ -13,7 +13,13 @@
 #include <sys_common.inl>
 
 
-extern"C" NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
+extern"C" unsigned long crt_init(void* hal_context)
 {
-    return __scrt_common_main(DriverObject, RegistryPath);
+    return __scrt_common_main(hal_context);
 }
+
+extern"C" void crt_shutdown(void* hal_context)
+{
+    __scrt_common_exit(hal_context);
+}
+

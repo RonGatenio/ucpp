@@ -5,16 +5,19 @@
 
 namespace Main
 {
-    EXTERN_C NTSTATUS DriverMain(const PDRIVER_OBJECT DriverObject, const PUNICODE_STRING Registry)
+    EXTERN_C NTSTATUS ModuleMain(unsigned long state, void* context)
     {
-        UNREFERENCED_PARAMETER(Registry);
+        UNREFERENCED_PARAMETER(context);
 
-        LOG("HI");
-
-        DriverObject->DriverUnload = [](auto)
+        switch (state)
         {
+        case 1:
+            LOG("HI");
+            break;
+        case 0:
             LOG("BYE");
-        };
+            break;
+        }
 
         return 0l;
     }

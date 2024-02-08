@@ -334,7 +334,7 @@ namespace UnitTest
 
 namespace Main
 {
-    EXTERN_C NTSTATUS DriverMain(const PDRIVER_OBJECT DriverObject, const PUNICODE_STRING Registry)
+    EXTERN_C NTSTATUS ModuleMain(const PDRIVER_OBJECT DriverObject, const PUNICODE_STRING Registry)
     {
         using namespace UnitTest;
         UNREFERENCED_PARAMETER(Registry);
