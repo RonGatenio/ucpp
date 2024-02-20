@@ -23,7 +23,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HalUser", "HalUser\HalUser.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyDriver2", "MyDriver2\MyDriver2.vcxproj", "{67C940B0-C4FB-48BF-9A3A-A84CD1789871}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vcrtl", "..\..\..\Work\Windows\Kernel\stlkrn\deps\vcrtl\vcrtl_driver.vcxproj", "{CD19C317-AA62-3DA9-922C-66DC4F1D451F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vcrtl", "deps\vcrtl\vcrtl_driver.vcxproj", "{CD19C317-AA62-3DA9-922C-66DC4F1D451F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -675,7 +675,7 @@
     </MASM>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Work\Windows\Kernel\stlkrn\deps\vcrtl\vcrtl_driver.vcxproj">
+    <ProjectReference Include="deps\vcrtl\vcrtl_driver.vcxproj">
       <Project>{cd19c317-aa62-3da9-922c-66dc4f1d451f}</Project>
     </ProjectReference>
   </ItemGroup>
