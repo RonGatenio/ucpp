@@ -675,7 +675,7 @@
     </MASM>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="deps\vcrtl\vcrtl_driver.vcxproj">
+    <ProjectReference Include="$(SolutionDir)deps\vcrtl\vcrtl_driver.vcxproj">
       <Project>{cd19c317-aa62-3da9-922c-66dc4f1d451f}</Project>
     </ProjectReference>
   </ItemGroup>
