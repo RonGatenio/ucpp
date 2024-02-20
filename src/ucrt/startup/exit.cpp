@@ -47,7 +47,7 @@ static void __cdecl common_exit(
 
         InterlockedExchange(&c_termination_complete, TRUE);
 
-        __try
+     //   __try
         {
             if (cleanup_mode == _crt_exit_full_cleanup)
             {
@@ -58,9 +58,9 @@ static void __cdecl common_exit(
                 _execute_onexit_table(&__acrt_at_quick_exit_table);
             }
         }
-        __except (atexit_exception_filter(GetExceptionCode()))
+       // __except (atexit_exception_filter(GetExceptionCode()))
         {
-            terminate();
+         //   terminate();
         }
 
         if (cleanup_mode == _crt_exit_full_cleanup)

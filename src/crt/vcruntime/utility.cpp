@@ -94,7 +94,7 @@ extern "C" bool __cdecl __scrt_is_nonwritable_in_current_image(void const* const
     auto const target_address = reinterpret_cast<unsigned char const*>(target);
     auto const image_base     = reinterpret_cast<unsigned char*>(&__ImageBase);
 
-    __try
+    //__try
     {
         // Make sure __ImageBase is the address of a valid PE image.  This is
         // likely an unnecessary check, since we should be executing in a
@@ -125,11 +125,11 @@ extern "C" bool __cdecl __scrt_is_nonwritable_in_current_image(void const* const
 
         return true;
     }
-    __except (GetExceptionCode() == STATUS_ACCESS_VIOLATION)
+    //__except (GetExceptionCode() == STATUS_ACCESS_VIOLATION)
     {
         // If any of the above operations failed, assume that we do not have a
         // valid nonwritable address in the current image:
-        return false;
+      //  return false;
     }
 }
 

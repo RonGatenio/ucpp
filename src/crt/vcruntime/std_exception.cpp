@@ -32,7 +32,7 @@ extern "C" void __cdecl __std_exception_copy(
         return;
     }
 
-    strcpy_s(buffer.get(), buffer_count, from->_What);
+    //strcpy_s(buffer.get(), buffer_count, from->_What);
     to->_What   = buffer.detach();
     to->_DoFree = true;
 }

@@ -24,6 +24,15 @@
 #pragma warning(disable:4471)
 #endif
 
+
+#ifdef __KERNEL_MODE
+#   ifndef  _KERNEL_MODE
+#       define  _KERNEL_MODE __KERNEL_MODE
+#   endif
+#else
+//#   error user mode is not supported.
+#endif
+
 #ifndef _CRTIMP
 #   define _CRTIMP
 #endif
@@ -33,6 +42,7 @@
 #endif
 
 
+//#include <fltKernel.h>
 #include <stdint.h>
 
 

@@ -97,7 +97,7 @@ static UINT_PTR __get_entropy(void)
     LARGE_INTEGER perfctr;
     LARGE_INTEGER tick{};
 
-    KeQuerySystemTime((PLARGE_INTEGER)&systime.ft_struct);
+    //KeQuerySystemTime((PLARGE_INTEGER)&systime.ft_struct);
 #if defined (_WIN64)
     cookie = systime.ft_scalar;
 #else  /* defined (_WIN64) */
@@ -105,17 +105,17 @@ static UINT_PTR __get_entropy(void)
     cookie ^= systime.ft_struct.dwHighDateTime;
 #endif  /* defined (_WIN64) */
 
-    cookie ^= (UINT_PTR)PsGetCurrentThreadId();
-    cookie ^= (UINT_PTR)PsGetCurrentProcessId();
+    cookie ^= (UINT_PTR)0;//PsGetCurrentThreadId();
+    cookie ^= (UINT_PTR)0;//PsGetCurrentProcessId();
 
-    KeQueryTickCount(&tick);
+    //KeQueryTickCount(&tick);
 
 #if defined (_WIN64)
     cookie ^= (((UINT_PTR)tick.QuadPart) << 56);
 #endif  /* defined (_WIN64) */
     cookie ^= (UINT_PTR)tick.QuadPart;
 
-    KeQueryPerformanceCounter(&perfctr);
+    //KeQueryPerformanceCounter(&perfctr);
 #if defined (_WIN64)
     cookie ^= (((UINT_PTR)perfctr.LowPart << 32) ^ perfctr.QuadPart);
 #else  /* defined (_WIN64) */

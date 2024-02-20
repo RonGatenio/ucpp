@@ -148,6 +148,9 @@
     <ClInclude Include="..\src\Hal\Inc\Utils.h">
       <Filter>ucxxrt\Hal\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="sys_main.h">
+      <Filter>ucxxrt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\ucxxrt.inl">
@@ -186,9 +189,6 @@
       <Filter>ucxxrt\ucrt\misc</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ucrt\misc\errno.cpp">
-      <Filter>ucxxrt\ucrt\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ucrt\misc\message.cpp">
       <Filter>ucxxrt\ucrt\misc</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ucrt\misc\terminate.cpp">
@@ -706,9 +706,6 @@
     </ClCompile>
     <ClCompile Include="..\src\crt\vcruntime\new_km.cpp">
       <Filter>ucxxrt\crt\vcruntime</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ucrt\heap\stdalloc.cpp">
-      <Filter>ucxxrt\ucrt\heap</Filter>
     </ClCompile>
     <ClCompile Include="..\src\crt\stl\mutex.cpp">
       <Filter>ucxxrt\crt\stl</Filter>

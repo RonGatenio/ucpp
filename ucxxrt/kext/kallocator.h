@@ -40,6 +40,14 @@ _NODISCARD constexpr void* ___voidify_iter(T iter) noexcept {
     }
 }
 
+#ifndef POOL_TYPE
+enum POOL_TYPE : int
+{
+    NonPagedPool,
+    PagedPool
+};
+#endif
+
 template <typename T, POOL_TYPE _Pool = PagedPool, unsigned long _Tag = 'trcu'>
 class kallocator {
 public:

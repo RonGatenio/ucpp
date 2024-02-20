@@ -139,7 +139,7 @@ extern "C" RENAME_BASE_PTD(__vcrt_ptd)* __cdecl RENAME_BASE_PTD(__vcrt_getptd)()
 
     if (infer_from_curexception != infer_from_processingthrow)
     {
-        abort();
+      //  abort();
     }
 
     return infer_from_curexception;

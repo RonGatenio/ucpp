@@ -81,7 +81,7 @@ Return Value:
     //
     if (_guard_icall_checks_enforced()) {
 
-        IoGetStackLimits((PULONG_PTR)&StackLowLimit, (PULONG_PTR)&StackHighLimit);
+        //IoGetStackLimits((PULONG_PTR)&StackLowLimit, (PULONG_PTR)&StackHighLimit);
 
         StackPointer = (PVOID)CONTEXT_TO_STACK_POINTER(ContextRecord);
 
@@ -132,7 +132,7 @@ Return Value:
 
     if (_guard_icall_checks_enforced()) {
 
-        IoGetStackLimits((PULONG_PTR)&StackLowLimit, (PULONG_PTR)&StackHighLimit);
+        //IoGetStackLimits((PULONG_PTR)&StackLowLimit, (PULONG_PTR)&StackHighLimit);
 
         StackPointer = ExceptGetJbSpRoutine(JumpBuffer);
 

@@ -92,7 +92,7 @@ extern "C" __acrt_ptd* __cdecl __acrt_getptd()
     __acrt_ptd* const ptd = __acrt_getptd_noexit();
     if (ptd == nullptr)
     {
-        abort();
+      //  abort();
     }
 
     return ptd;

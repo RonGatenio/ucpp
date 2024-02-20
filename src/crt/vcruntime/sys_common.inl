@@ -82,7 +82,7 @@ static __declspec(noinline) long __cdecl __scrt_common_main_seh(void* context)
     if (!__scrt_initialize_crt())
         __scrt_fastfail(FAST_FAIL_FATAL_APP_EXIT);
 
-    __try
+   // __try
     {
         if (_initterm_e(__xi_a, __xi_z) != 0)
             return STATUS_FAILED_DRIVER_ENTRY;
@@ -104,14 +104,14 @@ static __declspec(noinline) long __cdecl __scrt_common_main_seh(void* context)
 
         return main_result;
     }
-    __except (_seh_filter_dll(GetExceptionCode(), GetExceptionInformation()))
+   // __except (_seh_filter_dll(GetExceptionCode(), GetExceptionInformation()))
     {
         // Note:  We should never reach this except clause.
-        int const main_result = GetExceptionCode();
+     /*   int const main_result = GetExceptionCode();
 
         _c_exit();
 
-        return main_result;
+        return main_result;*/
     }
 }
 

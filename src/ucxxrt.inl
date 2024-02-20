@@ -73,7 +73,7 @@
 #       define  _KERNEL_MODE __KERNEL_MODE
 #   endif
 #else
-#   error user mode is not supported.
+//#   error user mode is not supported.
 #endif
 
 #ifdef _KERNEL_MODE

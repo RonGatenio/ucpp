@@ -7,6 +7,7 @@
 #include <yvals.h>
 
 #include <cstdlib>
+#include <Mutex.h>
 
 //#include <Windows.h>
 
@@ -17,7 +18,7 @@
 
 _EXTERN_C_UNLESS_PURE
 
-using _Rmtx = ERESOURCE;
+using _Rmtx = HMUTEX;
 
 #ifdef _M_CEE_PURE
 void __clrcall _Mtxinit(_Rmtx*) noexcept;

@@ -13,34 +13,35 @@
 #include <corecrt_internal.h>
 #include <malloc.h>
 #include <new.h>
+#include <Allocator.h>
 
 
-extern"C" __declspec(noinline) void* __cdecl ExReallocatePoolWithTag(
-    _In_ SIZE_T OldSize,
-    _In_ SIZE_T NewSize,
-    _In_ PVOID  OldBlock,
-    _In_ __drv_strictTypeMatch(__drv_typeExpr) POOL_TYPE PoolType,
-    _In_ ULONG Tag
-)
-{
-    if (OldSize == 0)
-    {
-        return nullptr;
-    }
-
-    #pragma warning(suppress: 4996)
-    void* const NewBlock = ExAllocatePoolWithTag(PoolType, NewSize, Tag);
-    if (NewBlock)
-    {
-        memset (NewBlock, 0, NewSize);
-        memmove(NewBlock, OldBlock, OldSize);
-
-        ExFreePoolWithTag(OldBlock, Tag);
-        return NewBlock;
-    }
-
-    return nullptr;
-}
+//extern"C" __declspec(noinline) void* __cdecl ExReallocatePoolWithTag(
+//    _In_ SIZE_T OldSize,
+//    _In_ SIZE_T NewSize,
+//    _In_ PVOID  OldBlock,
+//    _In_ __drv_strictTypeMatch(__drv_typeExpr) POOL_TYPE PoolType,
+//    _In_ ULONG Tag
+//)
+//{
+//    if (OldSize == 0)
+//    {
+//        return nullptr;
+//    }
+//
+//    #pragma warning(suppress: 4996)
+//    void* const NewBlock = ExAllocatePoolWithTag(PoolType, NewSize, Tag);
+//    if (NewBlock)
+//    {
+//        memset (NewBlock, 0, NewSize);
+//        memmove(NewBlock, OldBlock, OldSize);
+//
+//        ExFreePoolWithTag(OldBlock, Tag);
+//        return NewBlock;
+//    }
+//
+//    return nullptr;
+//}
 
 extern "C" _CRT_HYBRIDPATCHABLE __declspec(noinline) void __cdecl kfree(void* const block, unsigned long tag);
 
@@ -59,7 +60,7 @@ extern "C" _CRT_HYBRIDPATCHABLE __declspec(noinline) _CRTRESTRICT void* __cdecl 
     for (;;)
     {
         #pragma warning(suppress: 4996)
-        void* const block = ExAllocatePoolWithTag((POOL_TYPE)pool, actual_size, tag);
+        void* const block = nullptr;// ALLOCATOR_Allocate((POOL_TYPE)pool, actual_size, tag);
         if (block)
             return block;
 
@@ -137,7 +138,7 @@ extern "C" _CRT_HYBRIDPATCHABLE __declspec(noinline) _CRTRESTRICT void* __cdecl 
 
     for (;;)
     {
-        void* const new_block = ExReallocatePoolWithTag(_msize(block), size, block, NonPagedPool, __ucxxrt_tag);
+        void* const new_block = nullptr;// ALLOCATOR_Realloc ExReallocatePoolWithTag(_msize(block), size, block, NonPagedPool, __ucxxrt_tag);
         if (new_block)
         {
             return new_block;

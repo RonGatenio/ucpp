@@ -30,7 +30,7 @@
 #       define  _KERNEL_MODE __KERNEL_MODE
 #   endif
 #else
-#   error user mode is not supported.
+//#   error user mode is not supported.
 #endif
 
 #ifndef _CRTIMP
@@ -42,7 +42,7 @@
 #endif
 
 
-#include <fltKernel.h>
+//#include <fltKernel.h>
 #include <stdint.h>
 
 

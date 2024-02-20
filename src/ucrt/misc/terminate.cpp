@@ -47,11 +47,11 @@ extern "C" void __cdecl terminate() throw()
         // Note:  We cannot allow any exceptions to propagate from a user-
         // registered terminate handler, so if any structured exception escapes
         // the user handler we abort.
-        __try
+        //__try
         {
             handler();
         }
-        __except (EXCEPTION_EXECUTE_HANDLER)
+        //__except (EXCEPTION_EXECUTE_HANDLER)
         {
             ; // Deliberately do nothing
         }
@@ -61,3 +61,5 @@ extern "C" void __cdecl terminate() throw()
     // execution, we will do it:
     abort();
 }
+
+void abort() {}

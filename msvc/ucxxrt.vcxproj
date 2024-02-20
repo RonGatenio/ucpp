@@ -278,7 +278,9 @@
     <ClCompile Include="..\src\crt\stl\xwstold.cpp" />
     <ClCompile Include="..\src\crt\stl\xwstopfx.cpp" />
     <ClCompile Include="..\src\crt\stl\xwstoxfl.cpp" />
-    <ClCompile Include="..\src\crt\vcruntime\chandler_noexcept.cpp" />
+    <ClCompile Include="..\src\crt\vcruntime\chandler_noexcept.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\crt\vcruntime\checkcfg.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\delete_array.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\delete_array_align.cpp" />
@@ -293,7 +295,9 @@
     <ClCompile Include="..\src\crt\vcruntime\delete_scalar_nothrow.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\delete_scalar_size.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\delete_scalar_size_align.cpp" />
-    <ClCompile Include="..\src\crt\vcruntime\ehhelpers.cpp" />
+    <ClCompile Include="..\src\crt\vcruntime\ehhelpers.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\crt\vcruntime\ehstate.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\ehvccctr.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\ehvcccvb.cpp" />
@@ -301,7 +305,9 @@
     <ClCompile Include="..\src\crt\vcruntime\ehveccvb.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\ehvecdtr.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\fltused.cpp" />
-    <ClCompile Include="..\src\crt\vcruntime\frame.cpp" />
+    <ClCompile Include="..\src\crt\vcruntime\frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\crt\vcruntime\gs_cookie.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\gs_report.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\gs_support.cpp" />
@@ -322,8 +328,12 @@
     <ClCompile Include="..\src\crt\vcruntime\new_scalar_nothrow.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\per_thread_data.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\pesect.cpp" />
-    <ClCompile Include="..\src\crt\vcruntime\riscchandler.cpp" />
-    <ClCompile Include="..\src\crt\vcruntime\risctrnsctrl.cpp" />
+    <ClCompile Include="..\src\crt\vcruntime\riscchandler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\crt\vcruntime\risctrnsctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\crt\vcruntime\rtti.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\stdalloc.cpp" />
     <ClCompile Include="..\src\crt\vcruntime\std_exception.cpp" />
@@ -664,6 +674,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
     </MASM>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Work\Windows\Kernel\stlkrn\deps\vcrtl\vcrtl_driver.vcxproj">
+      <Project>{cd19c317-aa62-3da9-922c-66dc4f1d451f}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8D969184-788F-48AA-BF18-2898FC167C91}</ProjectGuid>
     <TemplateGuid>{0a049372-4c4d-4ea0-a64e-dc6ad88ceca1}</TemplateGuid>
@@ -674,6 +689,7 @@
     <RootNamespace>ucxxrt_kernel</RootNamespace>
     <DriverType>ExportDriver</DriverType>
     <ProjectName>ucxxrt</ProjectName>
+    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -703,13 +719,12 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <ALLOW_DATE_TIME>1</ALLOW_DATE_TIME>
-    <DriverTargetPlatform>Universal</DriverTargetPlatform>
     <Driver_SpectreMitigation>false</Driver_SpectreMitigation>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <TargetVersion>Windows10</TargetVersion>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <ALLOW_DATE_TIME>1</ALLOW_DATE_TIME>
@@ -820,12 +835,18 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)src\Hal\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>28252;28253;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)src\Hal\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>28252;28253;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <SDLCheck>false</SDLCheck>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

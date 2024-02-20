@@ -53,7 +53,7 @@ EXTERN_C NTSTATUS NTAPI RtlFindAndFormatMessage(
         PWSTR MessageFormat = nullptr;
         PMESSAGE_RESOURCE_ENTRY MessageEntry = nullptr;
 
-        __try
+        //__try
         {
             PVOID BaseDllHandle = ucxxrt::PsSystemDllBase;
 
@@ -201,10 +201,10 @@ EXTERN_C NTSTATUS NTAPI RtlFindAndFormatMessage(
 
             *Size = (WrittenSize - sizeof(WCHAR)) / sizeof(WCHAR);
         }
-        __except (EXCEPTION_EXECUTE_HANDLER)
+        //__except (EXCEPTION_EXECUTE_HANDLER)
         {
-            Status = GetExceptionCode();
-            break;
+          //  Status = GetExceptionCode();
+            //break;
         }
 
     } while (false);

@@ -25,6 +25,6 @@ extern "C" _CRT_HYBRIDPATCHABLE __declspec(noinline) void __cdecl kfree(void* co
 {
     if (block)
     {
-        ExFreePoolWithTag(block, tag);
+        //ExFreePoolWithTag(block, tag);
     }
 }

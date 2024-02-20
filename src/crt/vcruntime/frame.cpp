@@ -23,7 +23,7 @@
 #include <vcruntime_exception.h>
 #include <vcruntime_typeinfo.h>
 
-#include <Unknown.h>
+//#include <Unknown.h>
 #include "ehhelpers.h"
 #include "winapi_thunks.h"
 

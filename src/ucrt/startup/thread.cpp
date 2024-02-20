@@ -72,14 +72,14 @@ static void WINAPI thread_start(void* const parameter) throw()
 {
     if (!parameter)
     {
-        (void)PsTerminateSystemThread(STATUS_INVALID_PARAMETER);
+        //(void)PsTerminateSystemThread(STATUS_INVALID_PARAMETER);
     }
 
     __acrt_thread_parameter* const context = static_cast<__acrt_thread_parameter*>(parameter);
 
     __acrt_getptd()->_beginthread_context = context;
 
-    __try
+    //__try
     {
         ThreadProcedure const procedure = reinterpret_cast<ThreadProcedure>(context->_procedure);
         if constexpr (Ex)
@@ -92,10 +92,10 @@ static void WINAPI thread_start(void* const parameter) throw()
             _endthreadex(0);
         }
     }
-    __except (_seh_filter_dll(GetExceptionCode(), GetExceptionInformation()))
+    //__except (_seh_filter_dll(GetExceptionCode(), GetExceptionInformation()))
     {
         // Execution should never reach here:
-        _exit(GetExceptionCode());
+      //  _exit(GetExceptionCode());
     }
 }
 
@@ -143,8 +143,8 @@ extern "C" uintptr_t __cdecl _beginthread(
     InitializeObjectAttributes(&object_attributes, nullptr, OBJ_KERNEL_HANDLE, nullptr, nullptr);
 
     HANDLE thread_handle = nullptr;
-    long status = PsCreateSystemThread(&thread_handle, THREAD_ALL_ACCESS, &object_attributes,
-        nullptr, nullptr, thread_start<_beginthread_proc_type, false>, parameter.get());
+    long status = 0;// PsCreateSystemThread(&thread_handle, THREAD_ALL_ACCESS, &object_attributes,
+        //nullptr, nullptr, thread_start<_beginthread_proc_type, false>, parameter.get());
     if (!NT_SUCCESS(status))
     {
         __acrt_errno_map_os_error(status);
@@ -193,8 +193,8 @@ extern "C" uintptr_t __cdecl _beginthreadex(
 
     CLIENT_ID client_id{};
     HANDLE thread_handle = nullptr;
-    const long status = PsCreateSystemThread(&thread_handle, THREAD_ALL_ACCESS, &object_attributes,
-        nullptr, &client_id, thread_start<_beginthreadex_proc_type, true>, parameter.get());
+    const long status = 0;// PsCreateSystemThread(&thread_handle, THREAD_ALL_ACCESS, &object_attributes,
+        //nullptr, &client_id, thread_start<_beginthreadex_proc_type, true>, parameter.get());
     if (!NT_SUCCESS(status)) {
         __acrt_errno_map_os_error(status);
         return 0;
@@ -218,13 +218,13 @@ static void __cdecl common_end_thread(unsigned int const return_code) throw()
     __acrt_ptd* const ptd = __acrt_getptd_noexit();
     if (!ptd)
     {
-        (void)PsTerminateSystemThread(return_code);
+        //(void)PsTerminateSystemThread(return_code);
     }
 
     __acrt_thread_parameter* const parameter = ptd->_beginthread_context;
     if (!parameter)
     {
-        (void)PsTerminateSystemThread(return_code);
+        //(void)PsTerminateSystemThread(return_code);
     }
 
     if (parameter->_thread_handle != INVALID_HANDLE_VALUE && parameter->_thread_handle != nullptr)
@@ -232,7 +232,7 @@ static void __cdecl common_end_thread(unsigned int const return_code) throw()
         (void)ZwClose(parameter->_thread_handle);
     }
 
-    (void)PsTerminateSystemThread(return_code);
+    //(void)PsTerminateSystemThread(return_code);
 }
 
 extern "C" void __cdecl _endthread()

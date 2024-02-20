@@ -201,13 +201,13 @@ extern "C++"
             decltype(action()) result{};
 
             setup();
-            __try
+            //__try
             {
                 result = action();
             }
-            __finally
+           // __finally
             {
-                cleanup();
+             //   cleanup();
             }
 
             return result;
@@ -221,13 +221,13 @@ extern "C++"
         void operator()(Setup&& setup, Action&& action, Cleanup&& cleanup)
         {
             setup();
-            __try
+           // __try
             {
                 action();
             }
-            __finally
+           // __finally
             {
-                cleanup();
+             //   cleanup();
             }
         }
     };

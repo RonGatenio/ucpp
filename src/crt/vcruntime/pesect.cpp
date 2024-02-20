@@ -149,7 +149,8 @@ BOOL __cdecl _IsNonwritableInCurrentImage(
 
     pImageBase = (PBYTE)&__ImageBase;
 
-    __try {
+  //  __try 
+  {
         //
         // Make sure __ImageBase does address a PE image.  This is likely an
         // unnecessary check, since we should be running from a normal image,
@@ -180,14 +181,14 @@ BOOL __cdecl _IsNonwritableInCurrentImage(
         //
         return (pSection->Characteristics & IMAGE_SCN_MEM_WRITE) == 0;
     }
-    __except (GetExceptionCode() == STATUS_ACCESS_VIOLATION)
-    {
+   // __except (GetExceptionCode() == STATUS_ACCESS_VIOLATION)
+    //{
         //
         // Just return failure if the PE image is corrupted in any way that
         // triggers an AV.
         //
-        return FALSE;
-    }
+     //   return FALSE;
+   // }
 }
 
 _CRT_END_C_HEADER

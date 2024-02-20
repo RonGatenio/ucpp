@@ -10,7 +10,7 @@
 #define _VCRT_ALLOW_INTERNALS
 #endif // _VCRT_ALLOW_INTERNALS
 
-#include <Unknown.h>
+//#include <Unknown.h>
 #include <cstdlib> // for abort
 #include <cstring> // for memcpy
 #include <eh.h>
