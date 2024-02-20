@@ -1,3 +1,6 @@
 [submodule "veil"]
 	path = veil
 	url = https://github.com/MiroKaku/Veil.git
+[submodule "deps/vcrtl"]
+	path = deps/vcrtl
+	url = https://github.com/RonGatenio/vcrtl.git
