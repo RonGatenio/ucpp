@@ -83,7 +83,7 @@
 #include <cstring>   // For std::memset
 #include <iostream>
 #include <sstream>
-#include<string>
+#include <string>
 
 #if _MSC_VER >= 1200
 #pragma warning(pop)
@@ -97,9 +97,9 @@ using namespace std;
 void func()
 {
     vector<int> v(10);
-    std::stringstream s;
+    //std::stringstream s;
 
-    s << "Hi there ";
+    //s << "Hi there ";
     try
     {
         PRINT("[*] func - HELLO");
@@ -119,13 +119,13 @@ void func()
     }
     v.push_back(55555);
 
-    s << "Vector contains: ";
+  //  s << "Vector contains: ";
     for (auto i : v) {
-        s << i << ", ";
+  //      s << i << ", ";
     }
-    s << "\n";
+ //   s << "\n";
 
-    PRINT_(s.str().c_str(), s.str().length());
+  //  PRINT_(s.str().c_str(), s.str().length());
 
     PRINT("[*] func - RETURN func");
 }
