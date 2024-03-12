@@ -78,6 +78,12 @@
 )
 #endif
 
+#include <Windows.h>
+#include <iostream>  // For std::ostream and std::streambuf
+#include <cstring>   // For std::memset
+#include <iostream>
+#include <sstream>
+#include<string>
 
 #if _MSC_VER >= 1200
 #pragma warning(pop)
@@ -85,27 +91,56 @@
 
 using namespace std;
 
+#define PRINT(msg) WriteConsoleA(GetStdHandle(STD_OUTPUT_HANDLE), msg "\n", sizeof(msg), NULL, 0)
+#define PRINT_(msg, len) WriteConsoleA(GetStdHandle(STD_OUTPUT_HANDLE), (msg), (len), NULL, 0)
+
 void func()
 {
     vector<int> v(10);
+    std::stringstream s;
+
+    s << "Hi there ";
     try
     {
-        //printf("HIII\n");
+        PRINT("[*] func - HELLO");
+        
         v.push_back(1);
-        //std::cout << "STARTING!\n";
+        v.push_back(22);
+        v.push_back(333);
+        
         throw exception();
     }
     catch (const exception&)
     {
+        PRINT("[!] func - EXCEPTION");
+        v.push_back(4444);
         //printf("EXCEPTION\n");
         //cout << "EXCEPTION!\n";
     }
+    v.push_back(55555);
+
+    s << "Vector contains: ";
+    for (auto i : v) {
+        s << i << ", ";
+    }
+    s << "\n";
+
+    PRINT_(s.str().c_str(), s.str().length());
+
+    PRINT("[*] func - RETURN func");
 }
 
 
 extern "C" unsigned long ModuleMain(unsigned long state, void*)
 {
-    func();
-	return 0;
+    if (state == 1) {
+        PRINT("[*] ModuleMain - LOAD");
+        func();
+    }
+    else {
+        PRINT("[*] ModuleMain - UNLOAD");
+    }
+    PRINT("[*] ModuleMain - RETURN");
+    return 0;
 }
 
