@@ -12,6 +12,9 @@ bool _cdecl MUTEX_Create(HMUTEX* phMutex)
 		goto lblCleanup;
 	}
 
+	ptMutex->lSpinLock = 0;
+	ptMutex->dwThreadId = 0;
+
 	*phMutex = (HMUTEX)ptMutex;
 	ptMutex = NULL;
 	bRet = true;
@@ -45,9 +48,15 @@ bool _cdecl MUTEX_Lock(HMUTEX hMutex)
 	{
 		goto lblCleanup;
 	}
+
+	if (GetCurrentThreadId() == ptMutex->dwThreadId) {
+		goto lblCleanup;
+	}
 	
 	while(0 != InterlockedCompareExchange(&ptMutex->lSpinLock, 1, 0))
 	{}
+
+	ptMutex->dwThreadId = GetCurrentThreadId();
 		
 	bRet = true;
 
@@ -64,6 +73,8 @@ bool _cdecl MUTEX_UnLock(HMUTEX hMutex)
 	{
 		goto lblCleanup;
 	}
+
+	ptMutex->dwThreadId = 0;
 
 	InterlockedExchange(&ptMutex->lSpinLock, 0);
 

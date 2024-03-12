@@ -4,4 +4,5 @@
 typedef struct _MUTEX
 {
 	long volatile lSpinLock;
+	DWORD dwThreadId;
 } MUTEX, * PMUTEX;
